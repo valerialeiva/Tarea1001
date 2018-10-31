@@ -1,0 +1,131 @@
+// lcd.clear();
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(12, 11, 9, 8, 7, 6);
+
+int en1 = 0;
+int en2 = 0;
+int en3 = 0;
+int en4 = 0;
+
+
+void setup()
+  {
+  
+  lcd.begin(16,2);            //Inicializa display de 2 linhas x 16 colunas
+  lcd.print("Binario");            //Executa uma pequena contagem regressiva
+  delay(1000);
+  lcd.clear();
+  lcd.print("Decimal");            //Executa uma pequena contagem regressiva
+  delay(1000);
+  lcd.clear();
+  
+  pinMode(5, INPUT);  //Se desine cuales patas son entradas salidas//
+  pinMode(4, INPUT);  //entradas interrumptores//
+  pinMode(3, INPUT);
+  pinMode(2, INPUT);
+
+}
+
+void loop()
+{
+  
+  en1 = digitalRead(5);   //Entradas a variables en//
+  en2 = digitalRead(4);
+  en3 = digitalRead(3);
+  en4 = digitalRead(2);
+  if (en1 == LOW) {
+    if (en2 == LOW) {
+      if (en3 == LOW) {
+        if (en4 == LOW) {
+    lcd.clear();
+    lcd.home();
+    lcd.print("0");
+        
+        } else {
+    lcd.clear();
+    lcd.home();
+    lcd.print("1");
+        }
+      } else {
+        if (en4 == LOW) {
+    lcd.clear();
+    lcd.home();
+    lcd.print("2");
+        } else {
+    lcd.clear();
+    lcd.home();
+    lcd.print("3");
+        }
+      }
+    } else {
+      if (en3 == LOW) {
+        if (en4 == LOW) {
+    lcd.clear();
+    lcd.home();
+    lcd.print("4");
+        } else {
+    lcd.clear();
+    lcd.home();
+    lcd.print("5");
+        }
+      } else {
+        if (en4 == LOW) {
+    lcd.clear();
+    lcd.home();
+    lcd.print("6");
+        } else {
+    lcd.clear();
+    lcd.home();
+    lcd.print("7");
+        }
+      }
+    }
+  } else {
+    if (en2 < HIGH) {
+      if (en3 < HIGH) {
+        if (en4 < HIGH) {
+    lcd.clear();
+    lcd.home();
+    lcd.print("8");
+        } else {
+    lcd.clear();
+    lcd.home();
+    lcd.print("9");
+        }
+      } else {
+        if (en4 < HIGH) {
+    lcd.clear();
+    lcd.home();
+    lcd.print("10");
+        } else {  
+    lcd.clear();
+    lcd.home();
+    lcd.print("11");  
+        }                   
+      }                     
+    } else {
+      if (en3 < HIGH) {
+        if (en4 < HIGH) {
+    lcd.clear();
+    lcd.home();
+    lcd.print("12");          
+        } else {
+    lcd.clear();
+    lcd.home();
+    lcd.print("13");          
+        }
+      } else {
+        if (en4 < HIGH) {
+    lcd.clear();
+    lcd.home();
+    lcd.print("14");
+        } else {
+    lcd.clear();
+    lcd.home();
+    lcd.print("15");      
+        }
+      }
+    }
+  }
+  delay(25);
+}
